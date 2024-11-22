@@ -2,6 +2,7 @@ package ru.netology.hibernate.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
@@ -19,6 +20,8 @@ public class PersonRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
+    String queryString = read("query.sql");
+
     private static String read(String scriptFileName) {
         try (InputStream is = new ClassPathResource(scriptFileName).getInputStream();
              BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is))) {
@@ -29,13 +32,8 @@ public class PersonRepository {
     }
 
     public List<Persons> getPersonsByCity(String city) {
-        return findAll().stream()
-                .filter(person -> person.getCity_of_living().equals(city))
-                .toList();
-    }
-
-    private List<Persons> findAll() {
-        TypedQuery<Persons> query = entityManager.createQuery("SELECT e FROM Persons e", Persons.class);
+        Query query = entityManager.createNativeQuery(queryString, Persons.class);
+        query.setParameter("city_of_living", city);
         return query.getResultList();
     }
 }
