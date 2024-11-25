@@ -1,5 +1,6 @@
 package ru.netology.hibernate.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -12,7 +13,8 @@ public class Persons {
     @EmbeddedId
     private CompositeKey compositeKey;
     private String phone_number;
-    private String city_of_living;
+    @Column(name = "city_of_living")
+    private String cityOfLiving;
 
     public CompositeKey getCompositeKey() {
         return compositeKey;
@@ -22,8 +24,8 @@ public class Persons {
         return phone_number;
     }
 
-    public String getCity_of_living() {
-        return city_of_living;
+    public String getCityOfLiving() {
+        return cityOfLiving;
     }
 
     @Override
@@ -31,8 +33,20 @@ public class Persons {
         return "Persons{" +
                 "compositeKey=" + compositeKey +
                 ", phone_number='" + phone_number + '\'' +
-                ", city_of_living='" + city_of_living + '\'' +
+                ", city_of_living='" + cityOfLiving + '\'' +
                 '}';
+    }
+
+    public void setCompositeKey(CompositeKey compositeKey) {
+        this.compositeKey = compositeKey;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
+    public void setCityOfLiving(String cityOfLiving) {
+        this.cityOfLiving = cityOfLiving;
     }
 }
 
@@ -76,5 +90,17 @@ class CompositeKey implements Serializable {
 
     public int getAge() {
         return age;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }

@@ -20,7 +20,7 @@ public class PersonRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    String queryString = read("query.sql");
+    private String queryString = read("query.sql");
 
     private static String read(String scriptFileName) {
         try (InputStream is = new ClassPathResource(scriptFileName).getInputStream();

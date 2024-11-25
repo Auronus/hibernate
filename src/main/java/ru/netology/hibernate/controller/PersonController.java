@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 public class PersonController {
     @Autowired
-    PersonRepository repository;
+    private PersonRepository repository;
 
     @GetMapping("/persons/by-city")
     public List<Persons> getAuthorities(String name) {
