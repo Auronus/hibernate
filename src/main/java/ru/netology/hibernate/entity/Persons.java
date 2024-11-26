@@ -12,7 +12,8 @@ import java.util.Objects;
 public class Persons {
     @EmbeddedId
     private CompositeKey compositeKey;
-    private String phone_number;
+    @Column(name = "phone_number")
+    private String phoneNumber;
     @Column(name = "city_of_living")
     private String cityOfLiving;
 
@@ -20,8 +21,8 @@ public class Persons {
         return compositeKey;
     }
 
-    public String getPhone_number() {
-        return phone_number;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     public String getCityOfLiving() {
@@ -32,7 +33,7 @@ public class Persons {
     public String toString() {
         return "Persons{" +
                 "compositeKey=" + compositeKey +
-                ", phone_number='" + phone_number + '\'' +
+                ", phone_number='" + phoneNumber + '\'' +
                 ", city_of_living='" + cityOfLiving + '\'' +
                 '}';
     }
@@ -41,8 +42,8 @@ public class Persons {
         this.compositeKey = compositeKey;
     }
 
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+    public void setPhoneNumber(String phone_number) {
+        this.phoneNumber = phone_number;
     }
 
     public void setCityOfLiving(String cityOfLiving) {
