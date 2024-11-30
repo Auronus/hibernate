@@ -35,16 +35,16 @@ public class SecurityConfig {
                 .passwordEncoder(passwordEncoder::encode);
         InMemoryUserDetailsManager userDetailsManager = new InMemoryUserDetailsManager();
         userDetailsManager.createUser(users.username("admin")
-                .password(passwordEncoder.encode("admin"))
-                .roles("ADMIN", "READ", "WRITE", "DELETE")
+                .password("admin")
+                .roles("READ", "WRITE", "DELETE")
                 .build());
         userDetailsManager.createUser(users.username("user")
-                .password(passwordEncoder.encode("user"))
-                .roles("USER", "READ")
+                .password("user")
+                .roles("READ")
                 .build());
         userDetailsManager.createUser(users.username("writer")
-                .password(passwordEncoder.encode("writer"))
-                .roles("USER", "READ", "WRITE")
+                .password("writer")
+                .roles("READ", "WRITE")
                 .build());
         return userDetailsManager;
     }
